@@ -130,7 +130,7 @@ resource "aws_security_group" "svc_sg" {
 }
 
 resource "aws_ecs_service" "svc" {
-  name            = var.task_name
+  name            = "${var.task_name}-${var.stage}"
   cluster         = aws_ecs_cluster.cluster.id
   task_definition = aws_ecs_task_definition.task.arn
   launch_type     = "FARGATE"
