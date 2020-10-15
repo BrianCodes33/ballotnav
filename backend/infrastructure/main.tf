@@ -19,7 +19,7 @@ data "template_file" "task_definition" {
     container_name   = var.container_name
     image_tag        = var.image_tag
     cluster_name     = var.cluster_name
-    task_name        = var.task_name
+    task_name        = "${var.task_name}-${var.stage}"
     region           = var.region
     # secrets injected securely from AWS SSM systems manager param store
     # https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html
@@ -86,7 +86,7 @@ resource "aws_ecs_cluster" "cluster" {
 }
 
 resource "aws_ecs_task_definition" "task" {
-  family = var.task_name
+  family = "${var.task_name}-${var.stage}"
 
   container_definitions    = data.template_file.task_definition.rendered
   requires_compatibilities = ["FARGATE"]
