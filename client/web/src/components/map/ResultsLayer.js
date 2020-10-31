@@ -6,15 +6,15 @@ const BEFORE_ID = 'poi-label'
 class ResultsLayer extends React.Component {
   init = ({ map }) => {
     this.map = map
-
     this.addSources()
     this.addLayers()
   }
 
   componentDidUpdate(prev) {
-    const { results } = this.props
-
-    if (results !== prev.results) this.setResults(results)
+    if (this.map) {
+      const { results } = this.props
+      if (results !== prev.results) this.setResults(results)
+    }
   }
 
   addSources = () => {
@@ -59,7 +59,7 @@ class ResultsLayer extends React.Component {
 export default ResultsLayer
 
 ResultsLayer.propTypes = {
-  results: PropTypes.shape({}),
+  results: PropTypes.shape({}).isRequired,
 }
 
 ResultsLayer.defaultProps = {

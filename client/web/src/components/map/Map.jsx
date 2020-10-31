@@ -111,7 +111,6 @@ class Map extends React.Component {
 
   render() {
     const { locations } = this.props
-
     return (
       <div className="map">
         <div id="alert">

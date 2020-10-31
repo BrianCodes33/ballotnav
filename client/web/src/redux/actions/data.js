@@ -10,3 +10,14 @@ export function getJurisdiction(jurisdictionId) {
     )
   }
 }
+
+export function getStatesWithJurisdictions() {
+  return (dispatch) => {
+    return api.getStatesWithJurisdictions().then(payload => {
+      dispatch({
+        type: 'GET_STATES_AND_JURISDICTIONS_SUCCESS',
+        payload,
+      })
+    })
+  }
+};
